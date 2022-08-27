@@ -37,3 +37,9 @@ def edit_snippet(request, pk):
     else:
         form = SnippetForm(instance=snippet)
     return render(request, 'snippets/edit_snippet.html', {'form': form})
+
+
+def delete_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    snippet.delete()
+    return redirect('list_snippet')

@@ -7,6 +7,7 @@
     <div class="snippet-details">
         <div class="details-actions">
             <a href="{% url 'edit_snippet' pk=snippet.pk %}"> Edit {% include './icons/pencil-fill.svg' %}</a>
+            <a href="{% url 'delete_snippet' pk=snippet.pk %}"> Delete {% include './icons/trash.svg' %}</a>
         </div>
         <p>Title: {{ snippet.title }}</p>
         <p>Description: {{ snippet.description }}</p>

@@ -6,4 +6,5 @@ urlpatterns = [
     path('snippets/<int:pk>', views.detail_snippet, name='detail_snippet'),
     path('snippets/new', views.create_snippet, name='create_snippet'),
     path('snippets/<int:pk>/edit/', views.edit_snippet, name='edit_snippet'),
+    path('snippets/<int:pk>/delete/', views.delete_snippet, name='delete_snippet'),
 ]
