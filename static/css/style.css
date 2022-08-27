@@ -1,0 +1,26 @@
+.sidebar {
+    height: 17rem;
+    width: 9rem;
+    position: fixed;
+    left: 0;
+    top: 8%;
+    padding-top:1rem;
+    background-color: lightblue;
+}
+
+.sidebar div {
+    padding: 0.25rem;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sidebar div ul {
+    margin: 0.5rem;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.body-text {
+    margin-left: 10rem;
+}

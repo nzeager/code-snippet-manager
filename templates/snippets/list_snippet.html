@@ -7,6 +7,9 @@
     {% for snippet in snippets %}
         <div class="snippet-box">
             <a href="{% url 'detail_snippet' pk=snippet.pk %}"> {{ snippet }} </a>
+            <div class="details-actions">
+                <a href="{% url 'edit_snippet' pk=snippet.pk %}"> Edit {% include './icons/pencil-fill.svg' %}</a>
+            </div>
         </div>
     {% endfor %}
 {% endblock content %}

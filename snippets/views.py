@@ -24,3 +24,16 @@ def create_snippet(request):
     else:
         form = SnippetForm()
     return render(request, 'snippets/edit_snippet.html', {'form': form})
+
+
+def edit_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    if request.method == "POST":
+        form = SnippetForm(request.POST, instance=snippet)
+        if form.is_valid():
+            snippet = form.save(commit=False)
+            snippet.save()
+            return redirect('detail_snippet', pk=snippet.pk)
+    else:
+        form = SnippetForm(instance=snippet)
+    return render(request, 'snippets/edit_snippet.html', {'form': form})

@@ -11,9 +11,35 @@
 <body>
     <header>
         <a href="{% url 'list_snippet' %}">Code Snippets</a>
-        <a href="{% url 'create_snippet' %}"> Add {% include "./snippets/icons/file-earmark-plus.svg" %}</a>
     </header>
-    {% block content %}
-    {% endblock content %}
+    
+    <div class="sidebar">
+        <div class="sidebar-section">
+            Snippets
+            <ul>
+                <li><a href="{% url 'list_snippet' %}">List</a></li>
+                <li><a href="{% url 'create_snippet' %}">Create</a></li>
+            </ul>
+        </div>
+        <div>
+            Languages
+            <ul>
+                <li>List</li>
+                <li>Create</li>
+            </ul>
+        </div>
+        <div>
+            Tags
+            <ul>
+                <li>List</li>
+                <li>Create</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="body-text">
+        {% block content %}
+        {% endblock content %}
+    </div>
 </body>
 </html>
