@@ -9,6 +9,10 @@
     <title> {% block title %} {% endblock title %}</title>
 </head>
 <body>
+    <header>
+        <a href="{% url 'list_snippet' %}">Code Snippets</a>
+        <a href="{% url 'create_snippet' %}"> Add {% include "./snippets/icons/file-earmark-plus.svg" %}</a>
+    </header>
     {% block content %}
     {% endblock content %}
 </body>
