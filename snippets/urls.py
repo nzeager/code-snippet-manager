@@ -15,4 +15,11 @@ urlpatterns = [
     path('languages/<int:pk>/edit/', views.edit_language, name='edit_language'),
     path('languages/<int:pk>/delete/',
          views.delete_language, name='delete_language'),
+    # tags
+    path('tags/list', views.list_tag, name='list_tag'),
+    path('tags/<int:pk>', views.detail_tag, name='detail_tag'),
+    path('tags/new', views.create_tag, name='create_tag'),
+    path('tags/<int:pk>/edit/', views.edit_tag, name='edit_tag'),
+    path('tags/<int:pk>/delete/',
+         views.delete_tag, name='delete_tag'),
 ]

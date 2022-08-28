@@ -1,5 +1,5 @@
 from django import forms
-from .models import Snippet, Language
+from .models import Snippet, Language, Tag
 
 
 class SnippetForm(forms.ModelForm):
@@ -14,3 +14,10 @@ class LanguageForm(forms.ModelForm):
     class Meta:
         model = Language
         fields = ('name', 'version')
+
+
+class TagForm(forms.ModelForm):
+
+    class Meta:
+        model = Tag
+        fields = ('name',)

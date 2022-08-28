@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Snippet, Language
-from .forms import SnippetForm, LanguageForm
+from .models import Snippet, Language, Tag
+from .forms import SnippetForm, LanguageForm, TagForm
 
 # Create your views here.
 
@@ -86,3 +86,44 @@ def delete_language(request, pk):
     language = get_object_or_404(Language, pk=pk)
     language.delete()
     return redirect('list_language')
+
+
+# tags
+def list_tag(request):
+    tags = Tag.objects.all()
+    return render(request, 'snippets/list_tag.html', {'tags': tags})
+
+
+def detail_tag(request, pk):
+    tag = get_object_or_404(Tag, pk=pk)
+    return render(request, 'snippets/detail_tag.html', {"tag": tag})
+
+
+def create_tag(request):
+    if request.method == "POST":
+        form = TagForm(request.POST)
+        if form.is_valid():
+            tag = form.save()
+            return redirect('detail_tag', pk=tag.pk)
+    else:
+        form = TagForm()
+    return render(request, 'snippets/edit_tag.html', {'form': form})
+
+
+def edit_tag(request, pk):
+    tag = get_object_or_404(Tag, pk=pk)
+    if request.method == "POST":
+        form = TagForm(request.POST, instance=tag)
+        if form.is_valid():
+            tag = form.save(commit=False)
+            tag.save()
+            return redirect('detail_tag', pk=tag.pk)
+    else:
+        form = TagForm(instance=tag)
+    return render(request, 'snippets/edit_tag.html', {'form': form})
+
+
+def delete_tag(request, pk):
+    tag = get_object_or_404(Tag, pk=pk)
+    tag.delete()
+    return redirect('list_tag')
