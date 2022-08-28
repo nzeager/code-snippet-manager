@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+    <h1> Languages List </h1>
+    {% for language in languages %}
+        <div class="list-item">
+            <a href="{% url 'detail_language' pk=language.pk %}"> {{ language }} </a>
+            <div class="actions">
+                <a href="{% url 'edit_language' pk=language.pk %}"> Edit {% include './icons/pencil-fill.svg' %}</a>
+                <a href="{% url 'delete_language' pk=language.pk %}"> Delete {% include './icons/trash.svg' %}</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

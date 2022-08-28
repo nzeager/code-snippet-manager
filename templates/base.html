@@ -11,6 +11,7 @@
 <body>
     <header>
         <a href="{% url 'list_snippet' %}">Code Snippets</a>
+        <a href="{% url 'admin:index' %}">link to admin panel</a>
     </header>
     
     <div class="sidebar">
@@ -24,8 +25,8 @@
         <div>
             Languages
             <ul>
-                <li>List</li>
-                <li>Create</li>
+                <li><a href="{% url 'list_language' %}">List</a></li>
+                <li><a href="{% url 'create_language' %}">Create</a></li>
             </ul>
         </div>
         <div>

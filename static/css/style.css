@@ -1,15 +1,43 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ccc;
+}
+
+a {
+    color: black;
+}
+
+/* header */
+
+header {
+    background-color: rgb(7, 23, 80);
+    padding: 1.2rem;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header a {
+    color: white;
+}
+
+/* sidebar */
+
 .sidebar {
-    height: 17rem;
+    height: 16.5rem;
     width: 9rem;
     position: fixed;
     left: 0;
-    top: 8%;
-    padding-top:1rem;
+    top: 5.4rem;
+    padding-top: 1rem;
     background-color: lightblue;
 }
 
 .sidebar div {
-    padding: 0.25rem;
+    padding: 0.5rem 0.25rem 0.25rem 1.25rem;
     display: block;
     font-size: 16px;
     font-weight: bold;
@@ -21,6 +49,30 @@
     font-weight: normal;
 }
 
+/* body text */
 .body-text {
-    margin-left: 10rem;
+    margin-left: 9.3rem;
+    padding-left: 2rem;
+}
+
+/* list pages */
+.list-item{
+    padding: 0 0 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* details pages */
+h1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 .actions {
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.details {
+    padding-left: 1rem;
 }

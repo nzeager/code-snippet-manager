@@ -1,14 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %} Details {% endblock title %}
+{% block title %} Snippet Details {% endblock title %}
 
 {% block content %}
-    <h1>Snippet Details</h1>
-    <div class="snippet-details">
-        <div class="details-actions">
+    <h1>
+        Snippet Details
+        <div class="actions">
             <a href="{% url 'edit_snippet' pk=snippet.pk %}"> Edit {% include './icons/pencil-fill.svg' %}</a>
             <a href="{% url 'delete_snippet' pk=snippet.pk %}"> Delete {% include './icons/trash.svg' %}</a>
         </div>
+    </h1>
+    <div class="details">
         <p>Title: {{ snippet.title }}</p>
         <p>Description: {{ snippet.description }}</p>
         <p>Code: {{ snippet.code }}</p>

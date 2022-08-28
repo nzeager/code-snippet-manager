@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %} Fill in Snippet {% endblock title %}
+{% block title %} Fill in Language {% endblock title %}
 
 {% block content %}
-    <h1>Fill in Snippet Details</h1>
+    <h1>Fill in Language Details</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
