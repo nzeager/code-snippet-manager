@@ -8,8 +8,10 @@
         <div class="list-item">
             <a href="{% url 'detail_language' pk=language.pk %}"> {{ language }} </a>
             <div class="actions">
+                {% if user.is_authenticated %}
                 <a href="{% url 'edit_language' pk=language.pk %}"> Edit {% include './icons/pencil-fill.svg' %}</a>
                 <a href="{% url 'delete_language' pk=language.pk %}"> Delete {% include './icons/trash.svg' %}</a>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

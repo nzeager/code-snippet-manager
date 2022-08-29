@@ -6,8 +6,10 @@
     <h1>
         Snippet Details
         <div class="actions">
+            {% if user.is_authenticated %}
             <a href="{% url 'edit_snippet' pk=snippet.pk %}"> Edit {% include './icons/pencil-fill.svg' %}</a>
             <a href="{% url 'delete_snippet' pk=snippet.pk %}"> Delete {% include './icons/trash.svg' %}</a>
+            {% endif %}
         </div>
     </h1>
     <div class="details">

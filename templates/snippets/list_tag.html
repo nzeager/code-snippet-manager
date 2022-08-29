@@ -8,8 +8,10 @@
         <div class="list-item">
             <a href="{% url 'detail_tag' pk=tag.pk %}"> {{ tag }} </a>
             <div class="actions">
+                {% if user.is_authenticated %}
                 <a href="{% url 'edit_tag' pk=tag.pk %}"> Edit {% include './icons/pencil-fill.svg' %}</a>
                 <a href="{% url 'delete_tag' pk=tag.pk %}"> Delete {% include './icons/trash.svg' %}</a>
+                {% endif %}
             </div>
         </div>
     {% endfor %}
