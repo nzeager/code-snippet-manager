@@ -14,7 +14,7 @@ def list_snippet(request):
 
 def detail_snippet(request, pk):
     snippet = get_object_or_404(Snippet, pk=pk)
-    return render(request, 'snippets/detail_snippet.html', {"snippet": snippet})
+    return render(request, 'snippets/detail_snippet.html', {"snippet": snippet, "users": snippet.user.all(), "tags": snippet.tag.all()})
 
 
 def create_snippet(request):
