@@ -22,6 +22,8 @@ def create_snippet(request):
         form = SnippetForm(request.POST)
         if form.is_valid():
             snippet = form.save()
+            snippet.user.add(request.user)
+            snippet.save()
             return redirect('detail_snippet', pk=snippet.pk)
     else:
         form = SnippetForm()
