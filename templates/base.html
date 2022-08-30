@@ -11,7 +11,7 @@
 <body>
     <header>
         <a href="{% url 'list_snippet' %}">Code Snippets</a>
-        <a href="{% url 'admin:index' %}">link to admin panel</a> {% if user.is_authenticated %}<div>User: {{request.user.username}}</div>{% endif %}
+         <div class='account'>{% if user.is_authenticated %}<div>User: {{request.user.username}}</div> <div>Profile</div> <div><a href="/accounts/logout">Logout</a></div> {% else %} <div><a href="/accounts/login">Login</a></div> <div><a href="/accounts/register">Register</a></div> {% endif %} <div> <a href="{% url 'admin:index' %}"> TEMP: admin</a> </div></div>
     </header>
     
     <div class="sidebar">
@@ -24,7 +24,7 @@
                 {% endif %}
             </ul>
         </div>
-        <div>
+        <div class="sidebar-section">
             Languages
             <ul>
                 <li><a href="{% url 'list_language' %}">List</a></li>
@@ -33,7 +33,7 @@
                 {% endif %}
             </ul>
         </div>
-        <div>
+        <div class="sidebar-section">
             Tags
             <ul>
                 <li><a href="{% url 'list_tag' %}">List</a></li>

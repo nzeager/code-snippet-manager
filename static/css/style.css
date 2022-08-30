@@ -27,6 +27,18 @@ header a {
     color: white;
 }
 
+.account {
+    font-size: 1rem;
+    width: 30rem;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.account div {
+    margin-top: auto;
+}
+
 /* sidebar */
 
 .sidebar {
