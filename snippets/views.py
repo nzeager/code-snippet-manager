@@ -129,3 +129,9 @@ def delete_tag(request, pk):
     tag = get_object_or_404(Tag, pk=pk)
     tag.delete()
     return redirect('list_tag')
+
+
+# user
+def user_profile(request):
+    snippets = Snippet.objects.filter(user=request.user)
+    return render(request, 'snippets/profile.html', {"snippets": snippets})

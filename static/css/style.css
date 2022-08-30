@@ -39,6 +39,10 @@ header a {
     margin-top: auto;
 }
 
+.username {
+    font-weight: bold;
+}
+
 /* sidebar */
 
 .sidebar {
