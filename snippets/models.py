@@ -21,6 +21,10 @@ class Snippet(models.Model):
     # if I want to have more than one user associated with a snipped, I use a M2M field
     user = models.ManyToManyField(
         'User', related_name='snippets')
+    author = models.ForeignKey(
+        'User', on_delete=models.CASCADE, related_name='my_snippet')
+    parent = models.ForeignKey(
+        'Snippet', on_delete=models.SET_NULL, related_name='forks', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     tag = models.ManyToManyField('Tag', related_name='snippets', blank=True)
 
