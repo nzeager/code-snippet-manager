@@ -16,7 +16,7 @@ def list_snippet(request):
 
 def detail_snippet(request, pk):
     snippet = get_object_or_404(Snippet, pk=pk)
-    return render(request, 'snippets/detail_snippet.html', {"snippet": snippet, "users": snippet.user.all(), "tags": snippet.tag.all()})
+    return render(request, 'snippets/detail_snippet.html', {"snippet": snippet, "users": snippet.user.all(), "tags": snippet.tag.all(), "forks": snippet.forks.count()})
 
 
 @login_required
@@ -159,5 +159,6 @@ def delete_tag(request, pk):
 
 # user
 def user_profile(request):
-    snippets = Snippet.objects.filter(user=request.user)
+    snippets = Snippet.objects.filter(
+        user=request.user) | Snippet.objects.filter(author=request.user)
     return render(request, 'snippets/profile.html', {"snippets": snippets})

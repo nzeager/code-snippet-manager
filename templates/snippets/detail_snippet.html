@@ -6,10 +6,11 @@
     <h1>
         Snippet Details
         <div class="actions">
-            {% if user.is_authenticated %}
+            {% if user == snippet.author %}
             <a href="{% url 'edit_snippet' pk=snippet.pk %}"> Edit {% include './icons/pencil-fill.svg' %}</a>
             <a href="{% url 'delete_snippet' pk=snippet.pk %}"> Delete {% include './icons/trash.svg' %}</a>
-            <a href="{% url 'copy_snippet' pk=snippet.pk %}"> Duplicate {% include './icons/pencil-fill.svg' %}</a>
+            {% elif user.is_authenticated %}
+            <a href="{% url 'copy_snippet' pk=snippet.pk %}"> Duplicate {% include './icons/share.svg' %}</a>
             {% endif %}
         </div>
     </h1>
@@ -17,10 +18,11 @@
         <p>Title: {{ snippet.title }}</p>
         <p>Description: {{ snippet.description }}</p>
         <p>Code: {{ snippet.code }}</p>
-        {% if user.is_authenticated %}<p><button class='btn' data-clipboard-text="{{ snippet.code }}">Copy to clipboard</button></p>{% endif %}
+        {% if user.is_authenticated %}<p><button class='btn' data-clipboard-text="{{ snippet.code }}">Copy code to clipboard</button></p>{% endif %}
         <p>Language: {{ snippet.language }}</p>
         <p>Author: {{ snippet.author }}</p>
         <p>User(s): <ul>{% for user in users %} <li>{{ user }}</li> {% endfor %} </ul></p>
         <p>Tag(s): <ul>{% for tag in tags %} <li>{{ tag }}</li> {% endfor %}</ul></p>
+        <p>Number of Duplicates: {{ forks }}</p>
     </div>
 {% endblock content %}
