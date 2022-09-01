@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Snippet, Language, Tag
 from .forms import SnippetForm, LanguageForm, TagForm
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 
@@ -17,6 +19,7 @@ def detail_snippet(request, pk):
     return render(request, 'snippets/detail_snippet.html', {"snippet": snippet, "users": snippet.user.all(), "tags": snippet.tag.all()})
 
 
+@login_required
 def create_snippet(request):
     if request.method == "POST":
         form = SnippetForm(request.POST)
@@ -32,8 +35,11 @@ def create_snippet(request):
     return render(request, 'snippets/edit_snippet.html', {'form': form})
 
 
+@login_required
 def edit_snippet(request, pk):
     snippet = get_object_or_404(Snippet, pk=pk)
+    if request.user != snippet.author:
+        raise PermissionDenied()
     if request.method == "POST":
         form = SnippetForm(request.POST, instance=snippet)
         if form.is_valid():
@@ -45,10 +51,22 @@ def edit_snippet(request, pk):
     return render(request, 'snippets/edit_snippet.html', {'form': form})
 
 
+@login_required
 def delete_snippet(request, pk):
     snippet = get_object_or_404(Snippet, pk=pk)
+    if request.user != snippet.author:
+        raise PermissionDenied()
     snippet.delete()
     return redirect('list_snippet')
+
+
+@login_required
+def copy_snippet(request, pk):
+    snippet = get_object_or_404(Snippet, pk=pk)
+    snippet.pk = None
+    snippet.author = request.user
+    snippet.save()
+    return redirect('detail_snippet', pk=snippet.pk)
 
 
 # languages
@@ -62,6 +80,7 @@ def detail_language(request, pk):
     return render(request, 'snippets/detail_language.html', {"language": language})
 
 
+@login_required
 def create_language(request):
     if request.method == "POST":
         form = LanguageForm(request.POST)
@@ -73,6 +92,7 @@ def create_language(request):
     return render(request, 'snippets/edit_language.html', {'form': form})
 
 
+@login_required
 def edit_language(request, pk):
     language = get_object_or_404(Language, pk=pk)
     if request.method == "POST":
@@ -86,6 +106,7 @@ def edit_language(request, pk):
     return render(request, 'snippets/edit_language.html', {'form': form})
 
 
+@login_required
 def delete_language(request, pk):
     language = get_object_or_404(Language, pk=pk)
     language.delete()
@@ -103,6 +124,7 @@ def detail_tag(request, pk):
     return render(request, 'snippets/detail_tag.html', {"tag": tag})
 
 
+@login_required
 def create_tag(request):
     if request.method == "POST":
         form = TagForm(request.POST)
@@ -114,6 +136,7 @@ def create_tag(request):
     return render(request, 'snippets/edit_tag.html', {'form': form})
 
 
+@login_required
 def edit_tag(request, pk):
     tag = get_object_or_404(Tag, pk=pk)
     if request.method == "POST":
@@ -127,6 +150,7 @@ def edit_tag(request, pk):
     return render(request, 'snippets/edit_tag.html', {'form': form})
 
 
+@login_required
 def delete_tag(request, pk):
     tag = get_object_or_404(Tag, pk=pk)
     tag.delete()

@@ -9,9 +9,9 @@
             <a href="{% url 'detail_snippet' pk=snippet.pk %}"> {{ snippet }} </a>
             <div class="actions">
                 {% if user.is_authenticated %}
-                <button class='btn' data-clipboard-text="copied text">Copy to clipboard</button>
                 <a href="{% url 'edit_snippet' pk=snippet.pk %}"> Edit {% include './icons/pencil-fill.svg' %}</a>
                 <a href="{% url 'delete_snippet' pk=snippet.pk %}"> Delete {% include './icons/trash.svg' %}</a>
+                <a href="{% url 'copy_snippet' pk=snippet.pk %}"> Duplicate {% include './icons/pencil-fill.svg' %}</a>
                 {% endif %}
             </div>
         </div>
