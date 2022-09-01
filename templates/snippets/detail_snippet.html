@@ -17,7 +17,7 @@
     <div class="details">
         <p>Title: {{ snippet.title }}</p>
         <p>Description: {{ snippet.description }}</p>
-        <p>Code: {{ snippet.code }}</p>
+        <p>Code: <pre><code class='language-css'>{{ snippet.code }}</code></pre></p>
         {% if user.is_authenticated %}<p><button class='btn' data-clipboard-text="{{ snippet.code }}">Copy code to clipboard</button></p>{% endif %}
         <p>Language: {{ snippet.language }}</p>
         <p>Author: {{ snippet.author }}</p>
