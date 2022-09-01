@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import SearchResultsView
 
 urlpatterns = [
     # snippets
@@ -9,6 +10,7 @@ urlpatterns = [
     path('snippets/<int:pk>/edit/', views.edit_snippet, name='edit_snippet'),
     path('snippets/<int:pk>/delete/', views.delete_snippet, name='delete_snippet'),
     path('snippets/<int:pk>/copy', views.copy_snippet, name='copy_snippet'),
+    path('snippets/search/', SearchResultsView.as_view(), name='search_snippet'),
 
 
     # languages

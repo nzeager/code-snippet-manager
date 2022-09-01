@@ -3,6 +3,8 @@ from .models import Snippet, Language, Tag
 from .forms import SnippetForm, LanguageForm, TagForm
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.views.generic import ListView
+from django.db.models import Q
 
 # Create your views here.
 
@@ -67,6 +69,17 @@ def copy_snippet(request, pk):
     snippet.author = request.user
     snippet.save()
     return redirect('detail_snippet', pk=snippet.pk)
+
+
+class SearchResultsView(ListView):
+    model = Snippet
+    template_name = 'snippets/search_snippet.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = Snippet.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query) | Q(tag__name__icontains=query) | Q(language__name__icontains=query))
+        return object_list
 
 
 # languages
