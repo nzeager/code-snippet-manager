@@ -179,6 +179,7 @@ def delete_tag(request, pk):
 
 
 # user
+@ login_required
 def user_profile(request):
     snippets = Snippet.objects.filter(
         user=request.user) | Snippet.objects.filter(author=request.user)
