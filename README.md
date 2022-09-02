@@ -1,12 +1,35 @@
+# My Project - Code Snippet Manager: Instructions
+
+Steps to open app:
+
+1. Download the repo
+2. Run `pipenv install`, `pipenv shell`, `python manage.py migrate`, and `python manage.py runserver`
+3. Open the server url in your browser
+
+While logged out you can view Snippets, Languages, and Tags. There is also a search bar in the upper right corner of the browser to find relevant snippets.
+If you haven't created an account yet you will need to register before you can log in. When logged in you have more interaction available:
+
+1. Snippets: You can view a list of all snippets, create/edit/delete snippets, duplicate a snippet someone else has authored, and view a user profile with the snippets you have authored. You can also copy a snippet's code to you clipboard when viewing a snippet's details page.
+2. Languages: You can view a list of all languages, and create/edit/delete languages.
+3. Tags: You can view a list of all tags, and create/edit/delete tags.
+
+Other notes:
+
+1. The app name in the header will link to the snippet list.2) While logged in the username will display in the header.
+2. You can view the number of times a snippet has been duplicated in snippet details.
+3. If a snippet is a duplicate of another snippet, then the snippet details will have a link out to the parent.
+4. Multiple users can be connected to a snippet, but it only has one author.
+
 # Choose a Project
 
-This week, you will be on a small team working on a project. 
+This week, you will be on a small team working on a project.
 
 Use your combined creativity and good judgment to make decisions as you work. Users expect to see some common features in web applications. If they are not mentioned in the project's description, you should still do them. For example: in the code snippet application, users should have avatar images. You don't have to handle file uploads yourself -- you could use Gravatar with [django-gravatar](https://github.com/twaddington/django-gravatar) -- but you need some way of handling that.
 
 In addition to those small features, come up with your own features to make your project unique. You will likely use this project in your portfolio, so make it something you can be proud of.
 
 No starter repo is provided, so you will have to run the `django-admin` commands to create a new project.
+
 # Rules for all projects
 
 - Your application should be styled. It should be usable and aesthetically neutral, at a minimum. You can use a library or you can write custom css, or both. It is up to you.
@@ -20,6 +43,7 @@ Teams should consider trying something they don't know how to do on their projec
 # The Projects
 
 Your team should choose one of these options.
+
 ## Option 1: Code Snippet Manager
 
 You need a good way to manage snippets of code you reuse often. You are going to build a web application that has these goals:
