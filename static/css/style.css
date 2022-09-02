@@ -27,10 +27,6 @@ header a {
     color: white;
 }
 
-.search {
-    font-size: 1rem;
-}
-
 .account {
     font-size: 1rem;
     width: 30rem;
@@ -45,6 +41,15 @@ header a {
 
 .username {
     font-weight: bold;
+}
+
+.search {
+    font-size: 1rem;
+    position: relative;
+    margin-top: auto;
+}
+
+.search input {
 }
 
 /* sidebar */

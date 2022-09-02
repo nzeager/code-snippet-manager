@@ -45,7 +45,7 @@ def edit_snippet(request, pk):
     if request.method == "POST":
         form = SnippetForm(request.POST, instance=snippet)
         if form.is_valid():
-            snippet = form.save(commit=False)
+            snippet = form.save()
             snippet.save()
             return redirect('detail_snippet', pk=snippet.pk)
     else:
@@ -65,9 +65,17 @@ def delete_snippet(request, pk):
 @login_required
 def copy_snippet(request, pk):
     snippet = get_object_or_404(Snippet, pk=pk)
+    user_old = list(snippet.user.all())
+    tag_old = list(snippet.tag.all())
+    # breakpoint()
     snippet.pk = None
     snippet.author = request.user
+    snippet.parent = get_object_or_404(Snippet, pk=pk)
     snippet.save()
+    for user in user_old:
+        snippet.user.add(user)
+    for tag in tag_old:
+        snippet.tag.add(tag)
     return redirect('detail_snippet', pk=snippet.pk)
 
 
@@ -77,8 +85,8 @@ class SearchResultsView(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get('q')
-        object_list = Snippet.objects.filter(
-            Q(title__icontains=query) | Q(description__icontains=query) | Q(tag__name__icontains=query) | Q(language__name__icontains=query))
+        object_list = Snippet.objects.filter(Q(title__icontains=query) | Q(
+            description__icontains=query) | Q(tag__name__icontains=query) | Q(language__name__icontains=query))
         return object_list
 
 
@@ -93,7 +101,7 @@ def detail_language(request, pk):
     return render(request, 'snippets/detail_language.html', {"language": language})
 
 
-@login_required
+@ login_required
 def create_language(request):
     if request.method == "POST":
         form = LanguageForm(request.POST)
@@ -105,7 +113,7 @@ def create_language(request):
     return render(request, 'snippets/edit_language.html', {'form': form})
 
 
-@login_required
+@ login_required
 def edit_language(request, pk):
     language = get_object_or_404(Language, pk=pk)
     if request.method == "POST":
@@ -119,7 +127,7 @@ def edit_language(request, pk):
     return render(request, 'snippets/edit_language.html', {'form': form})
 
 
-@login_required
+@ login_required
 def delete_language(request, pk):
     language = get_object_or_404(Language, pk=pk)
     language.delete()
@@ -137,7 +145,7 @@ def detail_tag(request, pk):
     return render(request, 'snippets/detail_tag.html', {"tag": tag})
 
 
-@login_required
+@ login_required
 def create_tag(request):
     if request.method == "POST":
         form = TagForm(request.POST)
@@ -149,7 +157,7 @@ def create_tag(request):
     return render(request, 'snippets/edit_tag.html', {'form': form})
 
 
-@login_required
+@ login_required
 def edit_tag(request, pk):
     tag = get_object_or_404(Tag, pk=pk)
     if request.method == "POST":
@@ -163,7 +171,7 @@ def edit_tag(request, pk):
     return render(request, 'snippets/edit_tag.html', {'form': form})
 
 
-@login_required
+@ login_required
 def delete_tag(request, pk):
     tag = get_object_or_404(Tag, pk=pk)
     tag.delete()

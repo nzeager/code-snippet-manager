@@ -23,6 +23,9 @@
         <p>Author: {{ snippet.author }}</p>
         <p>User(s): <ul>{% for user in users %} <li>{{ user }}</li> {% endfor %} </ul></p>
         <p>Tag(s): <ul>{% for tag in tags %} <li>{{ tag }}</li> {% endfor %}</ul></p>
+        {% if snippet.parent %}
+        <p>Parent: <a href="{% url 'detail_snippet' pk=snippet.parent.pk %}">{{ snippet.parent }}</a></p>
+        {% endif %}
         <p>Number of Duplicates: {{ forks }}</p>
     </div>
 {% endblock content %}
