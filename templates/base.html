@@ -12,7 +12,7 @@
 <body>
     <header>
         <a href="{% url 'list_snippet' %}">Code Snippets</a>
-        <div class='account'>{% if user.is_authenticated %}<div class="username">User: {{request.user.username}}</div> <div><a href="/profile">Profile</a></div> <div><a href="/accounts/logout">Logout</a></div> {% else %} <div><a href="/accounts/login">Login</a></div> <div><a href="/accounts/register">Register</a></div> {% endif %} <div> <a href="{% url 'admin:index' %}"> TEMP: admin</a> </div></div>
+        <div class='account'>{% if user.is_authenticated %}<div class="username">User: {{request.user.username}}</div> <div><a href="/profile">Profile</a></div> <div><a href="/accounts/logout">Logout</a></div> {% else %} <div><a href="/accounts/login">Login</a></div> <div><a href="/accounts/register">Register</a></div> {% endif %} </div>
         <div class="search">Search snippets: <form action="{% url 'search_snippet' %}" method='GET'> <input name="q" type="text" placeholder="Search..."></form></div>
     </header>
     
