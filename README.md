@@ -1,5 +1,19 @@
 # My Project - Code Snippet Manager: Instructions
 
+## Momentum Boot Camp Project 10
+
+Skills:
+
+- using models.py to create multiples classes: User, Snippet, Language, and Tag
+- ability for new users to register
+- funcionality for logged in users: view profile with only their snippets, duplicate other user's snippets, ability to log in and out, display of user's information in the header
+- ability to copy code from a snippet to the user's clipboard
+- search bar for snippets
+- tracks the number of time a snippet has been duplicated, and duplicated snippets link to parent snippet
+- Snippets can only have one author, but be connected to multiple users
+
+## Below are Project Directions
+
 Steps to open app:
 
 1. Download the repo
